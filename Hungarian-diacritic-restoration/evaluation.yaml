@@ -1,0 +1,3 @@
+path: /home/bart/Downloads/hu
+dev_file: "${path}/target_dev.txt"
+model_dir: /home/bart/PycharmProjects/Hungarian-diacritic-restoration/17-18-42/
