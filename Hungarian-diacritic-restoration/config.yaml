@@ -1,0 +1,13 @@
+data:
+  path: /home/dorinapetra/BME/pynlp/hu
+  train_file: "${data.path}/target_train.txt"
+  dev_file: "${data.path}/target_dev.txt"
+model:
+  batch_size: 256
+  lrate: 0.001
+  emb_size: 128
+  emb_dropout: 0.6
+  hidden_size: 256
+  patience: 15
+  num_layers: 1
+  epoch: 500

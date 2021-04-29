@@ -26,7 +26,10 @@ class Vocabulary:
         # vocab.add('<EOS>')
         vocab.add('<UNK>')
 
-        for token in df.sentence:
+        for token in df.source:
+            vocab |= set(token)
+
+        for token in df.target:
             vocab |= set(token)
 
         return vocab
