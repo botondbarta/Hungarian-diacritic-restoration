@@ -66,11 +66,10 @@ class Experiment:
 
                 train_loss += loss
                 i += 1
-
+            train_loss = train_loss / i
             model.eval()
             with torch.no_grad():
                 dev_acc, dev_loss = self.evaluate_model(model, dev_iter, criterion)
-
                 all_train_loss.append(train_loss)
                 all_dev_loss.append(dev_loss)
                 all_dev_acc.append(dev_acc)
@@ -110,7 +109,8 @@ class Experiment:
             label = batch_y.reshape(-1)
             output_pred = output.argmax(-1)
             eq = torch.eq(output_pred, label)
-            mask_x = get_mask(batch_x, self.vocab.vowels)
+
+            mask_x = get_mask(batch_x, self.vocab.vowels).reshape(-1)
             eq[mask_x] = 0
             correct_guesses += eq.sum().float()
             all_guesses += torch.sum(mask_x == False)
