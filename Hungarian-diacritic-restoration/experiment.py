@@ -128,7 +128,7 @@ class Experiment:
         embedding_dim = cfg.model.emb_size
         hidden_dim = cfg.model.hidden_size
         n_layers = cfg.model.num_layers
-        vocab_size = len(self.vocab.chars)
+        vocab_size = len(self.vocab.char_indices)
 
         model = Model(embedding_dim, hidden_dim, n_layers, vocab_size).to(self.device)
 

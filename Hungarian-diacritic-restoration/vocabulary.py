@@ -44,7 +44,7 @@ class Vocabulary:
     def decode_output(self, output):
         chars = []
         for y in output:
-            if y == self.char_indices['<PAD>']:
+            if y == self.char_indices['<EOS>']:
                 break
             chars.append(self.indices_char.get(y, '<UNK>'))
 
