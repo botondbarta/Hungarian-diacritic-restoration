@@ -11,8 +11,8 @@ def get_df(train_file, dev_file):
     train_df = pd.read_table(train_file, header=None, names=['target'])
     dev_df = pd.read_table(dev_file, header=None, names=['target'])
 
-    train_df = train_df.iloc[:2000]
-    dev_df = dev_df.iloc[:1000]
+    train_df = train_df.iloc[:3000]
+    dev_df = dev_df.iloc[:500]
 
     train_df['source'] = train_df.apply(lambda x: remove_diacritics(x.target), axis=1)
     dev_df['source'] = dev_df.apply(lambda x: remove_diacritics(x.target), axis=1)
@@ -40,14 +40,8 @@ def pad_data(batch, pad):
     seq_len = list(map(len, batch))
     length = max(seq_len)
     data = torch.tensor([xi + [pad] * (length - len(xi)) for xi in batch])
-    return data#, seq_len
+    return data
 
 
 def get_mask(batch, vowels):
     return ~sum(batch == vowel for vowel in vowels).bool()
-
-"""
-if __name__ == '__main__':
-    tensor = torch.arange(10).reshape(2, -1)
-    print(sum(tensor == i for i in [3, 5, 9]).bool())
-    print(tensor == 0)"""

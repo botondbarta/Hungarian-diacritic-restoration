@@ -23,7 +23,7 @@ class Vocabulary:
     def create_vocab(self, df):
         vocab = set()
         # vocab.add('<SOS>')
-        # vocab.add('<EOS>')
+        vocab.add('<EOS>')
         vocab.add('<UNK>')
 
         for token in df.source:
@@ -38,6 +38,7 @@ class Vocabulary:
         ids = []
         for c in source:
             ids.append(self.char_indices.get(c, self.char_indices['<UNK>']))
+        ids.append(self.char_indices['<EOS>'])
         return ids
 
     def decode_output(self, output):
